@@ -18,7 +18,7 @@ wss1.on("connection", function connection(ws) {
     wss2.clients.forEach(function each(client) {
       if (client.readyState === WebSocket.OPEN) {
         x = getBVH(message);
-        if(x){
+        if(x!=null){
           client.send(message.toString());
         }
       }
