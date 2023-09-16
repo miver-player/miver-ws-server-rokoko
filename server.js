@@ -83,7 +83,7 @@ function getRJSON(blob){
   var obj = JSON.parse(blob.toString());
   if(obj.scene.actors[0]){
     var data = obj.scene.actors[0].body;
-    return data.toString();
+    return JSON.stringify(data);
   }
   else{
     return null;
