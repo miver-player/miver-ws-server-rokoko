@@ -15,6 +15,7 @@ const wss2 = new WebSocket.Server({ noServer: true });
 //for rokoko websocket
 wss1.on("connection", function connection(ws) {
   ws.on("message", function incoming(message) {
+    console.log("received wss1: %s", message);
     wss2.clients.forEach(function each(client) {
       if (client.readyState === WebSocket.OPEN) {
         x = getBVH(message);
