@@ -82,6 +82,7 @@ function getBVH(blob){
   if(obj.scene.actors[0]){
     var data = obj.scene.actors[0].body;
     console.log(data);
+    process.exit();
   }
 
 
