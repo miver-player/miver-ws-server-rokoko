@@ -16,9 +16,8 @@ const wss2 = new WebSocket.Server({ noServer: true });
 wss1.on("connection", function connection(ws) {
   ws.on("message", function incoming(message) {
     //console.log("received wss1: %s", message);
-    x = getBVH(message);
+    x = getRJSON(message);
     if(x!=null){
-
      wss2.clients.forEach(function each(client) {
       if (client.readyState === WebSocket.OPEN) {
           client.send(x);
@@ -32,7 +31,8 @@ var allContents = fs.readFileSync("public/bvhheader.txt", "utf-8");
 
 //miver end websocket
 wss2.on("connection", function connection(ws) {
-  ws.send(allContents.replace(/\r?\n|\r/g, "\n"));
+  //ws.send(allContents.replace(/\r?\n|\r/g, "\n"));
+  ws.send("sending rokoko json");
   ws.on("message", function incoming(message) {
     // nothing here should be received
     // console.log("received wss2: %s", message);
@@ -76,15 +76,14 @@ server.listen(port, () => {
 
 
 
-function getBVH(blob){
+function getRJSON(blob){
 
   var obj = JSON.parse(blob.toString());
   if(obj.scene.actors[0]){
     var data = obj.scene.actors[0].body;
-    console.log(data);
-    process.exit();
+    return data.toString();
   }
-
-
-  return blob.toString();
+  else{
+    return null;
+  }
 }
