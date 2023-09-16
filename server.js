@@ -79,7 +79,11 @@ server.listen(port, () => {
 function getBVH(blob){
 
   var obj = JSON.parse(blob.toString());
-  console.log(obj);
+  if(obj.scene.actors[0]){
+    var data = obj.scene.actors[0]
+    console.log(data);
+  }
+
 
   return blob.toString();
 }
