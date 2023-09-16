@@ -20,7 +20,7 @@ wss1.on("connection", function connection(ws) {
     if(x!=null){
      wss2.clients.forEach(function each(client) {
       if (client.readyState === WebSocket.OPEN) {
-          client.send(x);
+          client.send(x.toString());
       }
      });
     }
