@@ -16,11 +16,11 @@ const wss2 = new WebSocket.Server({ noServer: true });
 wss1.on("connection", function connection(ws) {
   ws.on("message", function incoming(message) {
     console.log("received wss1: %s", message);
-    var x = message.trim().split(" ").join(" ");
+    //var x = message.trim().split(" ").join(" ");
     //console.log(x);
     wss2.clients.forEach(function each(client) {
       if (client.readyState === WebSocket.OPEN) {
-        client.send(" \n" + x);
+        client.send(message);
       }
     });
   });
