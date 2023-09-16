@@ -80,7 +80,7 @@ function getBVH(blob){
 
   var obj = JSON.parse(blob.toString());
   if(obj.scene.actors[0]){
-    var data = obj.scene.actors[0]
+    var data = obj.scene.actors[0].body;
     console.log(data);
   }
 
