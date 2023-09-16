@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <meta viewport="width=device-width, initial-scale=1" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <body style="background: black; margin: 0; overflow: hidden">
+    <script>
+        $.get("./bvhheader.txt", function(data) {
+            console.log(data);
+        });
+      var count = 0;
+      var portStr = ":" + location.port;
+      var protocolStr = "ws";
+      if (location.protocol === "https:") {
+        protocolStr = "wss";
+      }
+      //console.log(protocolStr+'://' + location.hostname + portStr+"/bvh_client");
+      var ws = new WebSocket(
+        protocolStr + "://" + location.hostname + portStr + "/bvh_client"
+      );
+      if (window.location.hash.replace("#", "") == "debug") {
+        ws = new WebSocket(
+          "ws://54.213.38.191:3000/bvh_client"
+        );
+      }
+
+      ws.onmessage = function (message) {
+        document.getElementById("message").innerHTML = message.data;
+        console.log(new Date(), message.data);
+      };
+
+      // setInterval("location.reload()",1000*60);
+    </script>
+    <div id="message" style="color: white; position: fixed; top: 0"></div>
+  </body>
+</html>
