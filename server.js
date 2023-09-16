@@ -77,6 +77,7 @@ server.listen(port, () => {
 
 
 function getBVH(obj){
-  console.log(obj);
+
+  console.log("----> " + obj.toString());
   return obj.toString();
 }
