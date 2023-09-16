@@ -70,3 +70,12 @@ app.use(express.static(__dirname + "/public"));
 server.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`);
 });
+
+
+
+
+
+
+function getBVH(obj){
+  return obj.toString();
+}
