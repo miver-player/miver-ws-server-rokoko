@@ -18,8 +18,10 @@ wss1.on("connection", function connection(ws) {
     //console.log("received wss1: %s", message);
     x = getRJSON(message);
     if(x!=null){
+      console.log(x);
      wss2.clients.forEach(function each(client) {
       if (client.readyState === WebSocket.OPEN) {
+        
           client.send(x.toString());
       }
      });
