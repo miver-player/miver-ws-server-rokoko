@@ -15,8 +15,6 @@ const wss2 = new WebSocket.Server({ noServer: true });
 //for rokoko websocket
 wss1.on("connection", function connection(ws) {
   ws.on("message", function incoming(message) {
-    console.log(typeof message);
-
     wss2.clients.forEach(function each(client) {
       if (client.readyState === WebSocket.OPEN) {
         x = getBVH(message);
@@ -30,7 +28,7 @@ wss1.on("connection", function connection(ws) {
 
 var allContents = fs.readFileSync("public/bvhheader.txt", "utf-8");
 
-//webbrowser websocket
+//miver end websocket
 wss2.on("connection", function connection(ws) {
   ws.send(allContents.replace(/\r?\n|\r/g, "\n"));
   ws.on("message", function incoming(message) {
@@ -77,5 +75,6 @@ server.listen(port, () => {
 
 
 function getBVH(obj){
+  console.log(obj);
   return obj.toString();
 }
