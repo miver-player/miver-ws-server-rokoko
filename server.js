@@ -7,7 +7,7 @@ const url = require("url");
 
 const WebSocket = require("ws");
 
-const port = 3000; //dparseInt(process.argv.slice(2));
+const port = 4000; //parseInt(process.argv.slice(2));
 
 const wss1 = new WebSocket.Server({ noServer: true });
 const wss2 = new WebSocket.Server({ noServer: true });
@@ -21,7 +21,6 @@ wss1.on("connection", function connection(ws) {
       //console.log(x);
      wss2.clients.forEach(function each(client) {
       if (client.readyState === WebSocket.OPEN) {
-        
           client.send(x.toString());
       }
      });
